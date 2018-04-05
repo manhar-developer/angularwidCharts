@@ -34,7 +34,8 @@ export class LineChartComponent implements OnInit {
   constructor() { }
   chart = new Chart({
     chart: {
-      type: 'line'
+      type: 'line',
+      zoomType: 'x',
     },
     title: {
       text: 'Linechart'
@@ -84,9 +85,9 @@ export class LineChartComponent implements OnInit {
       {
           "name": "Other",
           "y": 7.62,
-          "drilldown": null
+          "drilldown": ""
       }
-  ], 
+  ]
   //drilldown: []
     }]
   });
