@@ -25,8 +25,13 @@ export class LineChartComponent implements OnInit {
       enabled: false
     },
     series: [{
-      name: 'Line 1',
-      data: [10, 20, 30]
+      name: 'FootFall',
+      data:  [
+        ['Store A', 8],
+        ['Store B', 3],
+        ['Store c', 1],
+        ['Store D', 6]
+    ]
     }]
   });
 
@@ -51,17 +56,12 @@ export class LineChartComponent implements OnInit {
       }
   },
   series: [{
-      name: 'Delivered amount',
+      name: 'FootFall Count',
       data: [
-          ['Bananas', 8],
-          ['Kiwi', 3],
-          ['Mixed nuts', 1],
-          ['Oranges', 6],
-          ['Apples', 8],
-          ['Pears', 4],
-          ['Clementines', 4],
-          ['Reddish (bag)', 1],
-          ['Grapes (bunch)', 1]
+          ['Store A', 8],
+          ['Store B', 3],
+          ['Store c', 1],
+          ['Store D', 6]
       ],
       
   }]
