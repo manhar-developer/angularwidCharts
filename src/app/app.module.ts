@@ -1,16 +1,23 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-
+import {ChartModule , HIGHCHARTS_MODULES} from 'angular-highcharts';
+import exporting from 'highcharts/modules/exporting.src.js';
 
 import { AppComponent } from './app.component';
+import { LineChartComponent } from './components/line-chart/line-chart.component';
 
+export function highchartsModules() {
+  // apply Highcharts Modules to this array
+  return [ exporting ];
+}
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    LineChartComponent
   ],
   imports: [
-    BrowserModule
+    BrowserModule,ChartModule
   ],
   providers: [],
   bootstrap: [AppComponent]
