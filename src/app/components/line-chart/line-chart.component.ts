@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Chart } from 'angular-highcharts';
+
 declare var require: any;
 const Highcharts = require('highcharts');
-//Highcharts.setOptions({ lang: { drillUpText: 'Go back'} });
 Highcharts.setOptions({
   chart: {
       backgroundColor: {
@@ -12,7 +12,10 @@ Highcharts.setOptions({
               [1, 'rgb(240, 240, 255)']
               ]
       },
-      borderWidth: 2,
+      lang: {
+        drillUpText: 'Go back'
+    },
+      borderWidth: 1,
       plotBackgroundColor: 'rgba(255, 255, 255, .9)',
       plotShadow: true,
       plotBorderWidth: 1
@@ -32,10 +35,12 @@ Highcharts.setOptions({
 export class LineChartComponent implements OnInit {
 
   constructor() { }
+ 
+ 
   chart = new Chart({
     chart: {
       type: 'line',
-      zoomType: 'x',
+      zoomType: 'xy',
     },
     title: {
       text: 'Linechart'
@@ -45,54 +50,38 @@ export class LineChartComponent implements OnInit {
     },
     series: [{
       name: 'FootFall',
-    //   data:  [
-    //     ['Store A', 80000],
-    //     ['Store B', 3],
-    //     ['Store c', 1],
-    //     ['Store D', 6]
-    // ]
+
     data:[
       {
           "name": "Chrome44",
           "y": 62.74,
+          "x":10,
           "drilldown": "Chrome"
       },
       {
           "name": "Firefox",
-          "y": 10.57,
+          "y": 100.57,
+          "x":15,
           "drilldown": "Firefox"
       },
       {
           "name": "Internet Explorer",
-          "y": 7.23,
+          "y":117.23,
+          "x":17,
           "drilldown": "Internet Explorer"
       },
       {
           "name": "Safari",
-          "y": 5.58,
+          "y": 155.58,
+          "x":20,
           "drilldown": "Safari"
-      },
-      {
-          "name": "Edge",
-          "y": 4.02,
-          "drilldown": "Edge"
-      },
-      {
-          "name": "Opera",
-          "y": 1.92,
-          "drilldown": "Opera"
-      },
-      {
-          "name": "Other",
-          "y": 7.62,
-          "drilldown": ""
       }
   ]
-  //drilldown: []
-    }]
+  }]
   });
 
   chart1 = new Chart({
+    
     chart: {
       type: 'pie',
       options3d: {
@@ -112,22 +101,51 @@ export class LineChartComponent implements OnInit {
           depth: 45
       }
   },
+  
+series: [{
+  name: 'Operating Systems',
+  data: [
+    {
+      name: 'Windows',
+      y: 88.19,
+      drilldown: 'windows-versions'
+    },
+    ['MacOSX', 9.22],
+    ['Linux', 1.58],
+    ['Others', 1.01]
+  ]
+}],
+drilldown: {
   series: [{
-      name: 'FootFall Count',
-      data: [
-          ['Store A', 8],
-          ['Store B', 3],
-          ['Store c', 1],
-          ['Store D', 6]
-      ],
-      
+    name: 'Windows versions',
+    id: 'windows-versions',
+    data: [
+      ['Win 7', 55.03],
+      ['Win XP', 15.83],
+      ['Win Vista', 3.59],
+      ['Win 8', 7.56],
+      ['Win 8.1', 6.18]
+    ]
   }]
+}
 });
 
-// add point to chart serie
-// add() {
-//   this.chart.addPoint(Math.floor(Math.random() * 10));
-// }
+/*
+function to zoom the graph
+*/ 
+
+zoomContent(){
+  this.chart.ref.yAxis[0].setExtremes(100,150);
+ 
+}
+
+/*
+function to rest the zoom in graph
+*/ 
+resetZoom()
+{
+  this.chart.ref.yAxis[0].setExtremes(null,null);
+}
 
   ngOnInit() {
   }
