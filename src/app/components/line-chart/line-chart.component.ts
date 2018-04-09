@@ -39,7 +39,7 @@ export class LineChartComponent implements OnInit {
  
   chart = new Chart({
     chart: {
-      type: 'line',
+      type: 'bar',
       zoomType: 'xy',
     },
     title: {
@@ -51,9 +51,7 @@ export class LineChartComponent implements OnInit {
     series: [{
       name: 'FootFall',
 
-    data:[
-      {
-          "name": "Chrome44",
+    data: [{'name': 'chrome44',
           "y": 62.74,
           "x":10,
           "drilldown": "Chrome"
@@ -81,8 +79,7 @@ export class LineChartComponent implements OnInit {
   });
 
   chart1 = new Chart({
-    
-    chart: {
+     chart: {
       type: 'pie',
       options3d: {
           enabled: true,
@@ -101,7 +98,6 @@ export class LineChartComponent implements OnInit {
           depth: 45
       }
   },
-  
 series: [{
   name: 'Operating Systems',
   data: [
@@ -132,11 +128,9 @@ drilldown: {
 
 /*
 function to zoom the graph
-*/ 
-
-zoomContent(){
-  this.chart.ref.yAxis[0].setExtremes(100,150);
- 
+*/
+zoomContent() {
+  this.chart.ref.yAxis[0].setExtremes(100, 150) ;
 }
 
 /*
