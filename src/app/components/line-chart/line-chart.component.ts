@@ -34,53 +34,79 @@ Highcharts.setOptions({
 
 export class LineChartComponent implements OnInit {
 
-  constructor() { }
+//  xyz(e, point) {
+//    alert("this is xyz");
+//     var pointName = e.point.name;
+//     point.options.chart.drilled = true;
+//     var charts = Highcharts.charts;
+//     Highcharts.each(charts, function(c, i) {
+//       if (!c.options.chart.drilled) {
+//         c.options.chart.drilled = true;
+//         Highcharts.each(c.series[0].data, function(p, j) {
+//           if (p.name === pointName) {
+//             p.doDrilldown();
+//           }
+//         })
+//       }
+//     })
+//   };
+
+drilldown()
+{
+  alert("hi");
+}
+  constructor() {
+
+     }
+  
  
  
   chart = new Chart({
     chart: {
-      type: 'bar',
+      type: 'line',
+      events:{drilldown:function(e){
+          alert("hi");}},
       zoomType: 'xy',
     },
     title: {
       text: 'Linechart'
     },
-    credits: {
-      enabled: false
-    },
-    series: [{
-      name: 'FootFall',
-
-    data: [{'name': 'chrome44',
-          "y": 62.74,
-          "x":10,
-          "drilldown": "Chrome"
-      },
-      {
-          "name": "Firefox",
-          "y": 100.57,
-          "x":15,
-          "drilldown": "Firefox"
-      },
-      {
-          "name": "Internet Explorer",
-          "y":117.23,
-          "x":17,
-          "drilldown": "Internet Explorer"
-      },
-      {
-          "name": "Safari",
-          "y": 155.58,
-          "x":20,
-          "drilldown": "Safari"
-      }
-  ]
-  }]
+    plotOptions: {column: {colorByPoint: true}},
+    exporting: {        
+      enabled: true,
+     },
+     series: [{
+      name: 'Operating Systems',
+      data: [
+        {
+          name: 'Windows',
+          y: 88.19,
+          drilldown: 'windows-versions'
+        },
+        ['MacOSX', 9.22],
+        ['Linux', 1.58],
+        ['Others', 1.01]
+      ]
+    }],
+    drilldown: {
+      series: [{
+        name: 'Windows versions',
+        id: 'windows-versions',
+        data: [
+          ['Win 7', 55.03],
+          ['Win XP', 15.83],
+          ['Win Vista', 3.59],
+          ['Win 8', 7.56],
+          ['Win 8.1', 6.18]
+        ]
+      }]
+    }
   });
 
   chart1 = new Chart({
      chart: {
       type: 'pie',
+     
       options3d: {
           enabled: true,
           alpha: 45
@@ -95,7 +121,8 @@ export class LineChartComponent implements OnInit {
   plotOptions: {
       pie: {
           innerSize: 100,
-          depth: 45
+          depth: 45,
+          
       }
   },
 series: [{
