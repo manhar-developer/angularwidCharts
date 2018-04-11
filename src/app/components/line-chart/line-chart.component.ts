@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { Chart } from 'angular-highcharts';
+import * as Highcharts from 'highcharts';
 
-declare var require: any;
-const Highcharts = require('highcharts');
+//declare var require: any;
+// const Highcharts = require('highcharts');
+
 Highcharts.setOptions({
   chart: {
       backgroundColor: {
@@ -12,15 +14,47 @@ Highcharts.setOptions({
               [1, 'rgb(240, 240, 255)']
               ]
       },
-      lang: {
-        drillUpText: 'Go back'
-    },
+    
       borderWidth: 1,
       plotBackgroundColor: 'rgba(255, 255, 255, .9)',
       plotShadow: true,
-      plotBorderWidth: 1
-  }
+      plotBorderWidth: 20
+  },
+  lang: {},
+  drilldown :{
+    //var clickedEventId = e.seriesOptions.id;
+  },
+    
+  
+ 
 });
+
+var commonDrilldown = {
+  series: [{
+    id: 'first',
+    colorByPoint: false,
+    dataLabels: {
+      enabled: false
+    },
+    data: [3, 2, 9]
+  }, {
+    id: 'second',
+    colorByPoint: false,
+    dataLabels: {
+      enabled: false
+    },
+    data: [5, 2]
+  }, {
+    id: 'third',
+    colorByPoint: false,
+    dataLabels: {
+      enabled: false
+    },
+    data: [7]
+  }]
+},
+performedDrill = false;
+
 
 @Component({
   selector: 'app-line-chart',
@@ -51,21 +85,21 @@ export class LineChartComponent implements OnInit {
 //     })
 //   };
 
-drilldown()
-{
-  alert("hi");
-}
+
   constructor() {
 
      }
-  
- 
+    
  
   chart = new Chart({
     chart: {
       type: 'line',
       events:{drilldown:function(e){
-          alert("hi");}},
+        //var clickedEventId = e.seriesOptions.id;
+        performedDrill = true;
+      console.log(performedDrill);
+      //console.log(this.plotBorderWidth);
+      }},
       zoomType: 'xy',
     },
     title: {
@@ -82,6 +116,12 @@ drilldown()
           name: 'Windows',
           y: 88.19,
           drilldown: 'windows-versions'
+        },
+        {
+          name: 'someOS',
+          x:2.5,
+          y: 80.19,
+         // drilldown: 'windows-versions'
         },
         ['MacOSX', 9.22],
         ['Linux', 1.58],
@@ -106,6 +146,9 @@ drilldown()
   chart1 = new Chart({
      chart: {
       type: 'pie',
+      events:{drilldown:function(e){
+      // console.log(this.chart.clickedEventId);
+      }},
      
       options3d: {
           enabled: true,
@@ -152,6 +195,7 @@ drilldown: {
   }]
 }
 });
+
 
 /*
 function to zoom the graph
